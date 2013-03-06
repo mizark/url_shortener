@@ -1,4 +1,16 @@
 UrlShortener::Application.routes.draw do
+
+  resources :links, only: [:show, :create, :destroy]
+
+  root :to => 'links#home'
+
+  match '/(:url)', to: 'links#incoming'
+
+
+
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
