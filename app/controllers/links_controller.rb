@@ -10,6 +10,9 @@ class LinksController < ApplicationController
 
 	def create
 		@link = Link.new(params[:link])
+		if !@link.long_url.starts_with?('http://')
+			@link.long_url = 'http://' + params[:link][:long_url]
+		end
 		@link.short_url = (0...6).map{(65+rand(26)).chr}.join
 		if @link.save
 			respond_to do |format|
